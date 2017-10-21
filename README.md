@@ -13,6 +13,6 @@ The selenium is currently using chrome webdriver.
 1. Install chrome using 
    `sudo apt-get install google-chrome-stable`
    
-2. Download chromeweb driver from <a href="https://sites.google.com/a/chromium.org/chromedriver/downloads">here</a>.
+2. Download chromeweb driver from <a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank">here</a>.
 
 3. Install selenium using `pip install selenium`
