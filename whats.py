@@ -1,13 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+import os
 import threading
 driver = None
 
 
 def main():
     global driver
-    driver = webdriver.Chrome('/home/ankur/Public/Installed/chromedriver')
+    driver = webdriver.Chrome(os.environ['CHROME_DRIVER'])
     driver.get("https://web.whatsapp.com/")
     answer = raw_input('Is the phone connected successfully? (y/Y) -> ')
 
@@ -25,7 +26,8 @@ def main():
 
 
 def give_options():
-    answer = int(raw_input('1. Send scheduled message\n2. Send quick message\n-> ').strip())
+    answer = int(
+        raw_input('1. Send scheduled message\n2. Send quick message\n3. Chat\n-> ').strip())
 
     if answer == 1:
         interval = int(raw_input('Enter the interval in seconds -> ').strip())
@@ -35,13 +37,32 @@ def give_options():
     elif answer == 2:
         user_name = raw_input('Enter the user -> ').strip()
         message = raw_input('Enter the message -> ')
-        send_message(user_name, message)
+
+        user_name_list = user_name.split(',')
+
+        for user_name in user_name_list:
+            if user_name:
+                send_message(user_name.strip(), message)
+    elif answer == 3:
+        user_name = raw_input('Enter the user -> ').strip()
+        initialize_chat(user_name)
     else:
         print 'O.o\nWrong Choice!'
 
 
 def message_after_interval(interval, user_name, message):
     threading.Timer(interval, send_message, args=[user_name, message, True]).start()
+
+
+def initialize_chat(user_name):
+    if open_chat(user_name):
+        print 'Chat opened'
+        try:
+            all_msgs_text_only = driver.find_element_by_xpath(
+                '//div[contains(@class, "message-text")]')
+            print all_msgs_text_only
+        except Exception as e:
+            print str(e)
 
 
 def open_chat(user_name):
