@@ -21,7 +21,8 @@ The selenium is currently using chrome webdriver.
 
 # Usage
 
-Just run the whats.py file by <br><br>
+Just run the whats.py file by
+
 `python whats.py`
 <br>
 
