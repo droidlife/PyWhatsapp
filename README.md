@@ -16,3 +16,14 @@ The selenium is currently using chrome webdriver.
 2. Download chromeweb driver from <a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank">here</a>.
 
 3. Install selenium using `pip install selenium`
+
+4. Add `export CHROME_DRIVER='\path\to\chrom\driver'` in bashrc file
+
+# Usage
+
+Just run the whats.py file by <br><br>
+`python whats.py`
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
